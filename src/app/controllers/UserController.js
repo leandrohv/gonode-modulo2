@@ -11,7 +11,7 @@ class UserController {
 
     await User.create({ ...req.body, avatar, deleted_at })
 
-    console.log(req.body)
+    req.flash('success', 'Usuário cadastrado com sucesso')
 
     return res.redirect('/')
   }

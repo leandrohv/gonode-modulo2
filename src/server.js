@@ -1,6 +1,7 @@
 const express = require('express')
 const session = require('express-session')
-const FileStore = require('session-file-store')(session)
+// const FileStore = require('session-file-store')(session)
+const LokiStore = require('connect-loki')(session)
 const nunjucks = require('nunjucks')
 const path = require('path')
 
@@ -14,6 +15,18 @@ class App {
     this.routes()
   }
 
+  /*
+  const options = {
+      name: 'root',
+      secret: 'MyAppSecret',
+      resave: false,
+      store: new LokiStore({
+        path: path.resolve(__dirname, '..', 'tmp', 'sessions')
+      }),
+      saveUninitialized: true
+    }
+  */
+
   middlewares () {
     /* parametro para trabalhar com formulários */
     this.express.use(express.urlencoded({ extended: false }))
@@ -22,7 +35,7 @@ class App {
         name: 'root',
         secret: 'MyAppSecret',
         resave: true,
-        store: new FileStore({
+        store: new LokiStore({
           path: path.resolve(__dirname, '..', 'tmp', 'sessions')
         }),
         saveUninitialized: true

@@ -18,9 +18,8 @@ class AppointmentController {
       date
     })
 
-    req.flash('success', 'Horário agendado com sucesso!')
-
     return res.redirect('/app/dashboard')
   }
 }
+
 module.exports = new AppointmentController()

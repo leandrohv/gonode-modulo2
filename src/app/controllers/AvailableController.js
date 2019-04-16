@@ -1,5 +1,5 @@
 const moment = require('moment')
-const Op = require('sequelize')
+const { Op } = require('sequelize')
 const { Appointment } = require('../models')
 
 class AvailableController {
@@ -8,13 +8,10 @@ class AvailableController {
 
     const appointments = await Appointment.findAll({
       where: {
-        provider_id: req.params.provider,
-        date: {
-          [Op.between]: [
-            date.startOf('day').format(),
-            date.endOf('day').format()
-          ]
-        }
+        provider_id: req.params.provider
+      },
+      date: {
+        [Op.between]: [date.startOf('day').format(), date.endOf('day').format()]
       }
     })
 
@@ -51,6 +48,8 @@ class AvailableController {
           !appointments.find(a => moment(a.date).format('HH:mm') === time)
       }
     })
+
+    console.log(available)
 
     return res.render('available/index', { available })
   }

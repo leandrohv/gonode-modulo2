@@ -1,7 +1,9 @@
 {% extends "_layouts/auth.njk" %}
+
 {% block body %}
   <form action="/signin" method="post">
-    <img src="/images/logoGoNutri2.fw.svg" height="100"/>
+    <img src="/images/LogoGoNutri.svg" height="100" />
+    <label>Agendamentos para nutricionistas</label>
 
     {% include "_partials/flash.njk" %}
 
@@ -10,7 +12,6 @@
 
     <button type="submit">Entrar</button>
 
-    <a href="/signup">Criar conta grátis</a>
+    <a href="/signup">Criar conta gráris</a>
   </form>
-
 {% endblock %}
